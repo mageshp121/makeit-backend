@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: magesh1213/makeituser
+      context: user-srv
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .  
+    - image: magesh1213/makeitcourse
+      context: course-srv
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .

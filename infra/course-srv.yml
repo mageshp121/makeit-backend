@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: course
+  template:
+    metadata:
+      labels:
+        app: course
+    spec:
+      containers:
+      - name: course-container
+        image: magesh1213/makeitcourse:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: course-srv
+spec:
+  selector:
+    app: course
+  ports:
+    - name: course
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
