@@ -19,7 +19,9 @@ export default (dependencies:any)=>{
         
     }
     const router =  express.Router();
+    // Course contrpller
     const {   createCourse_controller,getcourseByTutorId_controller,getAllCourses_controller,getCourseById_controller,publishCourse_controlers,upDatecourseBasic } = courseController(dependencies);
+    // lesson controller
     const {createLessone_controller,getLessoneBycourseId_controller} = lessoneControler(dependencies)
 
     // get methode releted to course 
@@ -27,17 +29,27 @@ export default (dependencies:any)=>{
     router.get('/courses',getAllCourses_controller);
     router.get('/course/:id',getCourseById_controller)
 
+
+
     // get methode related to lessone
     router.get('/lessones/:id',getLessoneBycourseId_controller);
+
+
 
     // post methodes related to course
     router.post('/courses',jwtauthentication(secret),upload.single('ThumbnailImage'),createCourse_controller);
 
+
+
     // post methodes related to lessones
     router.post('/lessones',jwtauthentication(secret),upload.single('lessoneContent'),createLessone_controller);
 
+
+
     // patch methode related course
     router.patch('/pub/:id',jwtauthentication(secret),publishCourse_controlers);
+
+
 
     // put methodes 
     router.put('/updatecourse',jwtauthentication(secret),upload.single('ThumbnailImage'),upDatecourseBasic)

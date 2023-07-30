@@ -6,6 +6,8 @@ export interface userData {
     password:string,
     roll:string
     isOtPVerified:boolean
+    profileImage:string | null
+    s3ImageUrl:string | null
 }
 
 export class userProfile{
@@ -16,7 +18,9 @@ export class userProfile{
     password:string 
     roll:string
     isOtPVerified:boolean
-    constructor({firstName,lastName,email,phone,password,roll,isOtPVerified}:userData){
+    profileImage:string | null
+    s3ImageUrl:string | null
+    constructor({firstName,lastName,email,phone,password,roll,isOtPVerified,profileImage,s3ImageUrl}:userData){
         this.firstName = firstName
         this.lastName  = lastName,
         this.email = email,
@@ -24,5 +28,7 @@ export class userProfile{
         this.password = password,
         this.roll = roll
         this.isOtPVerified = isOtPVerified
+        this.profileImage = profileImage
+        this.s3ImageUrl = s3ImageUrl
     }
 }

@@ -1,3 +1,4 @@
+import { string } from "joi";
 import mongoose from "mongoose";
 
 const usrSchema = new mongoose.Schema({
@@ -7,7 +8,9 @@ const usrSchema = new mongoose.Schema({
     phone:Number,
     password:String,
     roll:String,
-    otpVerify:Boolean
+    otpVerify:Boolean,
+    profileImage:String,
+    s3ImageUrl:String
 },{
     versionKey:false
 })

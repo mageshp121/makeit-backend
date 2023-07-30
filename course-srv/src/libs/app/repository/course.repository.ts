@@ -57,8 +57,11 @@ export default {
   },
 
   updateCourse: async (data: any) => {
+    console.log(data,'data');
+    console.log('calling thssss');
+    
     const courssRes = await course.updateMany(
-      { _id: new Types.ObjectId(data.id) },
+      { _id: new Types.ObjectId(data._id) },
       {
         $set: {
           WorkingTitle: data.WorkingTitle,
@@ -76,7 +79,10 @@ export default {
           CoursePrice: data.CoursePrice,
           drafted: data.drafted,
         },
-      }
+      },
+      { new: true }
     );
+    console.log(courssRes);
+    return courssRes
   },
 };
