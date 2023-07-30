@@ -5,7 +5,7 @@ import registerController from "./registerController";
 import logoutController from "./logout_Controler";
 import getUserByEmailController from "./getUserByEmailController";
 import createRefreshController from "./createRefreshController";
-
+import updateUserControler from "./updateUserControler";
 
 
 export default (dependencies: any) => {
@@ -16,6 +16,7 @@ export default (dependencies: any) => {
     RegisterUser:registerController(dependencies),
     logutControler:logoutController(dependencies),
     getUserByEmail:getUserByEmailController(dependencies),
-    createRefreshController:createRefreshController(dependencies)
+    createRefreshController:createRefreshController(dependencies),
+    updateUserUserController:updateUserControler(dependencies),
   };
 };

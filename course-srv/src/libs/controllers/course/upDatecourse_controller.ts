@@ -11,8 +11,7 @@ export default (dependencies:any)=>{
           const { exicutefunction} = await updateCourse_usecase(dependencies);
           const courseRes = await exicutefunction(data);
           if(!courseRes) throw new BadRequestError("somthing went wrong");
-          return courseRes
- 
+         res.send(courseRes).status(200);
     }
   return courseBasic
 }

@@ -42,7 +42,6 @@ export const createCourse_useCase = async (dependencies: any) => {
     // creating a new course enitty
     let cours: object = new course({
       ...data.body,
-      tutorId:'64acf4006742357551e55edd',
       drafted: true,
       thumbNailImageS3UrlKey:imageName,
     });

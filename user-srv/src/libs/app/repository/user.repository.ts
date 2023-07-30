@@ -6,7 +6,7 @@ export default {
     
     createUser:async(data:any)=>{
 
-        console.log(data,'alll data');
+        console.log(data,'alll  lllllll    data');
         const userData = {
 
             firstName :data.firstName,
@@ -15,20 +15,53 @@ export default {
             phone:data.phone,
             password:data.password,
             roll:data.roll,
-            otpVerify:data. isOtPVerified
-
+            otpVerify:data. isOtPVerified,
+            profileImage:data.profileImage,
+            s3ImageUrl:data.s3ImageUrl
         }
         console.log(userData,'userdata');
         const User = await user.create(userData)
         console.log(User,'userdata');
         return User
     },
+
    
     getAllUser:async()=>{
            const allUserdataObject = await user.find({})
            console.log(allUserdataObject,'alluserdataObject');
            return allUserdataObject
     },
+
+// updateCourse: async (data: any) => {
+//     console.log(data,'data');
+//     console.log('calling thssss');
+    
+//     const courssRes = await course.updateMany(
+//       { _id: new Types.ObjectId(data._id) },
+//       {
+//         $set: {
+//           WorkingTitle: data.WorkingTitle,
+//           Category: data.Category,
+//           Description: data.Description,
+//           ShortDescription: data.ShortDescription,
+//           WhatWilllearn1: data.WhatWilllearn1,
+//           WhatWilllearn2: data.WhatWilllearn2,
+//           WhatWilllearn3: data.WhatWilllearn3,
+//           WhatWilllearn4: data.WhatWilllearn4,
+//           WhoIsThiscourseFor: data.WhoIsThiscourseFor,
+//           thumbNailImageS3UrlKey:data.imageName,
+//           prerequesties1: data.prerequesties1,
+//           prerequesties2: data.prerequesties2,
+//           CoursePrice: data.CoursePrice,
+//           drafted: data.drafted,
+//         },
+//       },
+//       { new: true }
+//     );
+//     console.log(courssRes);
+//     return courssRes
+//   },
+// };
 
     getUserByEmail:async(email:string)=>{
                 console.log(email,'email at repository');
@@ -43,8 +76,33 @@ export default {
                 console.log(userObjcet,'user obejct');
                 return userObjcet
     },
+    
 
+
+    updateUser:async (data:any) =>{
+        console.log("calling updateUser");
+        const updatedRes = await user.updateMany( { _id: new Types.ObjectId(data._id) },
+        {
+            $set:{
+                firstName:data.firstName,
+                lastName:data.lastName,
+                email:data.email,
+                profileImage:data.profileImage,
+            }
+           },
+        {new:true}) 
+        console.log(updatedRes,'ressssss');
+        if(updatedRes.acknowledged){
+            const userObjcet = await user.findById({_id:new Types.ObjectId(data._id)});
+            return userObjcet
+        }else{
+            return {
+                status : false
+            }
+        }
+    }
 
     
        
 }
+
