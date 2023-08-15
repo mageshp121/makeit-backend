@@ -6,10 +6,6 @@ Table of Contents
 Features
 Microservice Architecture
 Technologies Used
-Getting Started
-Usage
-Contributing
-License
 
 Features
 
@@ -24,11 +20,15 @@ The application is built upon a microservice architecture, ensuring the followin
 Scalability: Each component is independently scalable, enabling efficient resource allocation.
 Fault Tolerance: Microservices promote fault isolation, reducing the impact of failures.
 Maintainability: The modular design facilitates easy updates and maintenance of individual services.
+
+
 Technologies Used
-Frontend: React.js
+
 Backend: Node.js, Express.js
 Microservices: Docker, Kubernetes
 Database: MongoDB
-Real-Time Communication: WebSockets
+Real-Time Communication: Nats
 Authentication: JWT (JSON Web Tokens)
-Cloud Platform: AWS (Amazon Web Services)
+
+
+
