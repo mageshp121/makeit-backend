@@ -23,7 +23,7 @@ export default (dependencies:any)=>{
 
 
     // Get Methodes
-    router.get("/Allusers",getAllUsersController);
+    router.get("/allusers",getAllUsersController);
     router.get('/logout',logutControler);
     router.get("/users/:id",getUserById);
     router.get("/user/email",getUserByEmail);

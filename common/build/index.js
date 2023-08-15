@@ -29,3 +29,9 @@ __exportStar(require("./middlewares/require-auth"), exports);
 __exportStar(require("./middlewares/validate-request"), exports);
 __exportStar(require("./middlewares/authe-jwt-token"), exports);
 __exportStar(require("./middlewares/auth-roll"), exports);
+// From events
+__exportStar(require("./events/base-listener"), exports);
+__exportStar(require("./events/base-publisher"), exports);
+__exportStar(require("./events/subjects"), exports);
+__exportStar(require("./events/Course-created-event"), exports);
+__exportStar(require("./events/Course-updated-event"), exports);

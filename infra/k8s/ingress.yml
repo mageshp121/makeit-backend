@@ -1,6 +1,3 @@
-         
-
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -28,4 +25,17 @@ spec:
                 name: course-srv
                 port:
                   number: 4000
-
+          - path: /api/purchase/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: purchase-srv
+                port:
+                  number: 5000        
+          - path: /api/payment/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: purchase-srv
+                port:
+                  number: 5000  

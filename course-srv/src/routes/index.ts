@@ -1,5 +1,5 @@
 import express from "express";
-import courseRoutes from './courseRoutes/course.route'
+import courseRoutes from './courseRoutes/course.routes'
 
 export const routes  =(dependencies:any)=>{
     const routes = express.Router()

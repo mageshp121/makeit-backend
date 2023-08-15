@@ -1,3 +1,4 @@
 import { course } from "./course.schema";
 import { lessone } from "./lessone.schema";
-export default {course,lessone}
+import { category } from "./category.schema";
+export default {course,lessone,category}
