@@ -3,7 +3,7 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/*
+      - ./infra/k8s/*
 build:
   local:
     push: false
@@ -24,3 +24,11 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: magesh1213/makeitpurchase
+      context: purchase-srv
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .        

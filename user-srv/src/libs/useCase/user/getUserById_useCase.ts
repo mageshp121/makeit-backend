@@ -8,18 +8,21 @@ export const getUserBy_Id_useCase = (dependecies:any) =>{
         const executefunction=async(id:string)=>{
                 const userById = await userRepository.getUserById(id);
                 console.log(userById,'user object');
-               if( typeof userById.profileImage === "string" && userById.profileImage.length > 0){
-                  const getObjectParams = {
-                     Bucket:  bucketName,
-                     Key:userById.profileImage,
-                   };
-                   const command = new GetObjectCommand(getObjectParams);
-                   const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-                   userById.s3ImageUrl = url
-                   return userById
-               }else{
-                    return userById
-               }
+                if(userById != null){
+                  if( typeof userById.profileImage === "string" && userById.profileImage.length > 0){
+                     const getObjectParams = {
+                        Bucket:  bucketName,
+                        Key:userById.profileImage,
+                      };
+                      const command = new GetObjectCommand(getObjectParams);
+                      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+                      userById.s3ImageUrl = url
+                      return userById
+                  }else{
+                       return userById
+                  }
+                }
+               
         }
    return {
       executefunction

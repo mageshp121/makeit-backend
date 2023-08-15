@@ -1,13 +1,13 @@
 import express from "express";
 require("express-async-errors");
-// import depentencies from "./config/dependencies";
-// import { routes } from "./routes";
+import depentencies from "./config/dependencies";
+import { routes } from "./routes";
 // import { sanitizeData } from "./libs/utils/sanitize/sanitize";
 import { errorHandler, NotFoundError } from "@makeitcmn/comon";
 import cookieParser from "cookie-parser";
 // import helmet from "helmet";
 // import mongosanitizer from "express-mongo-sanitize";
-// import cors from "cors";
+import cors from "cors";
 import env from "dotenv";
 
 env.config();
@@ -30,15 +30,15 @@ app.use(
 //   next();
 // });
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
-// app.use("/api", routes(depentencies));
+app.use("/api", routes(depentencies));
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

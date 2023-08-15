@@ -1,16 +1,18 @@
-import {   course } from "../../enities/courseentity";
+import { course } from "../../enities/courseentity";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { bucketName, s3 } from "../../utils/AWSs3/s3";
 import dotenv from "dotenv";
 import { randomImageBites } from "../../utils/crypto/crypto";
-import sharp from 'sharp'
+import sharp from "sharp";
+import { CourseCreatedPublisher } from "../../../events/publishers/course-created-publisher";
+import { natsWrapper } from "../../../nats-wrapper";
 dotenv.config();
 /**
  * courseData is an interface.
  * Course is a class.
  */
 
-// const bucketName = process.env.BUCKET_NAME as string
+// const bucketName = process.env.BUCKET_NAME as
 
 export const createCourse_useCase = async (dependencies: any) => {
   const {
@@ -19,20 +21,20 @@ export const createCourse_useCase = async (dependencies: any) => {
   if (!courseRepository) console.log("Have no repository");
   const exicutefunction = async (data: any) => {
     console.log(randomImageBites(), "btyryyyryryryr");
-    console.log(data,'datatatatatatatataatatatatat');
-    
+    console.log(data, "datatatatatatatataatatatatat");
+
     // Converting the image buffer from JPG to WebP
-    const imageBufferJPG = data.file.buffer
-    const contentType = 'image/webp'  
-    const webImageData = await sharp(imageBufferJPG).webp().toBuffer()
+    const imageBufferJPG = data.file.buffer;
+    const contentType = "image/webp";
+    const webImageData = await sharp(imageBufferJPG).webp().toBuffer();
     // random bytes for random image name
     const imageName = randomImageBites();
     // s3 bucket
     const params = {
       Bucket: bucketName,
-      Key:imageName,
-      Body:webImageData,
-      ContentType:contentType,
+      Key: imageName,
+      Body: webImageData,
+      ContentType: contentType,
     };
     console.log(params, "dadadddddddddd");
 
@@ -43,10 +45,28 @@ export const createCourse_useCase = async (dependencies: any) => {
     let cours: object = new course({
       ...data.body,
       drafted: true,
-      thumbNailImageS3UrlKey:imageName,
+      thumbNailImageS3UrlKey: imageName,
     });
     console.log(cours, "course entity created");
     const courseRes = await courseRepository.createCourse(cours);
+    new CourseCreatedPublisher(natsWrapper.client).publish({
+      CourseId: courseRes._id,
+      WorkingTitle: courseRes.WorkingTitle,
+      ShortDescription: courseRes.ShortDescription,
+      Description: courseRes.Description,
+      Category: courseRes.Category,
+      thumbNailImageS3UrlKey: courseRes.thumbNailImageS3UrlKey,
+      tutorId: courseRes.tutorId,
+      WhatWilllearn1: courseRes.WhatWilllearn1,
+      WhatWilllearn2: courseRes.WhatWilllearn2,
+      WhatWilllearn3: courseRes.WhatWilllearn3,
+      WhatWilllearn4: courseRes.WhatWilllearn4,
+      WhoIsThiscourseFor: courseRes.WhoIsThiscourseFor,
+      prerequesties1: courseRes.prerequesties1,
+      prerequesties2: courseRes.prerequesties2,
+      CoursePrice: courseRes.CoursePrice,
+      drafted: courseRes.drafted,
+    });
     console.log(courseRes, "course response afte adding into database");
     return courseRes;
   };

@@ -6,8 +6,9 @@ export default (dependencies:any) => {
     console.log(req.params);
     const {useCase: { getUserBy_Id_useCase }} = dependencies;
     const userData = await getUserBy_Id_useCase(dependencies).executefunction(id);
-    if (!userData.staus) return res.status(200).json(userData);
-    return res.status(401).json({ status: false });
+    if (!userData)return res.status(401).json({ status: false });
+    return res.status(200).json(userData);
+    
   };
   return getUserById;
 };

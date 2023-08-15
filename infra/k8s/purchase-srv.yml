@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: purchase-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: purchase
+  template:
+    metadata:
+      labels:
+        app: purchase
+    spec:
+      containers:
+      - name: purchase-container
+        image: magesh1213/makeitpurchase:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: purchase-srv
+spec:
+  selector:
+    app: purchase
+  ports:
+    - name: purchase
+      protocol: TCP
+      port: 5000
+      targetPort: 5000

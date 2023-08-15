@@ -32,36 +32,6 @@ export default {
            return allUserdataObject
     },
 
-// updateCourse: async (data: any) => {
-//     console.log(data,'data');
-//     console.log('calling thssss');
-    
-//     const courssRes = await course.updateMany(
-//       { _id: new Types.ObjectId(data._id) },
-//       {
-//         $set: {
-//           WorkingTitle: data.WorkingTitle,
-//           Category: data.Category,
-//           Description: data.Description,
-//           ShortDescription: data.ShortDescription,
-//           WhatWilllearn1: data.WhatWilllearn1,
-//           WhatWilllearn2: data.WhatWilllearn2,
-//           WhatWilllearn3: data.WhatWilllearn3,
-//           WhatWilllearn4: data.WhatWilllearn4,
-//           WhoIsThiscourseFor: data.WhoIsThiscourseFor,
-//           thumbNailImageS3UrlKey:data.imageName,
-//           prerequesties1: data.prerequesties1,
-//           prerequesties2: data.prerequesties2,
-//           CoursePrice: data.CoursePrice,
-//           drafted: data.drafted,
-//         },
-//       },
-//       { new: true }
-//     );
-//     console.log(courssRes);
-//     return courssRes
-//   },
-// };
 
     getUserByEmail:async(email:string)=>{
                 console.log(email,'email at repository');

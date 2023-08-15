@@ -29,12 +29,12 @@ app.use(helmet({ xssFilter: true }));
 app.use(mongosanitizer());
 
 // sanitizing middleware
-// app.use((req, res, next) => {
-//   if (req.body) sanitizeData(req.body);
-//   if (req.query) sanitizeData(req.query);
-//   if (req.params) sanitizeData(req.params);
-//   next();
-// });
+app.use((req, res, next) => {
+  if (req.body) sanitizeData(req.body);
+  if (req.query) sanitizeData(req.query);
+  if (req.params) sanitizeData(req.params);
+  next();
+});
 
 app.use(
   cors({

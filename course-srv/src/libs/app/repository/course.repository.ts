@@ -34,6 +34,12 @@ export default {
     const courses = await course.find({ tutorId: id });
     return courses;
   },
+  getCourseByCategory:async(category:string)=>{
+      console.log(category);
+      const courses = await course.find({Category:category});
+      return courses
+      
+  },
 
   getAllCoureses: async () => {
     const allCourse = await course.find({});
@@ -60,7 +66,7 @@ export default {
     console.log(data,'data');
     console.log('calling thssss');
     
-    const courssRes = await course.updateMany(
+    const courssRes = await course.updateOne(
       { _id: new Types.ObjectId(data._id) },
       {
         $set: {

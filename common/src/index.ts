@@ -17,3 +17,10 @@ export * from './middlewares/require-auth';
 export * from './middlewares/validate-request';
 export * from './middlewares/authe-jwt-token';
 export * from './middlewares/auth-roll';
+
+// From events
+export * from './events/base-listener';
+export * from './events/base-publisher';
+export * from './events/subjects';
+export * from './events/Course-created-event';
+export * from './events/Course-updated-event';

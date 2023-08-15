@@ -1,2 +1,2 @@
-import cartSchama from './Schema'
-export default cartSchama 
+import purchaseSchema from './Schema'
+export default purchaseSchema

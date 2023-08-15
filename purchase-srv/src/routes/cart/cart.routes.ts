@@ -2,11 +2,11 @@ import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
 import { CartControllers } from '../../libs/controllers'
-// import multer from 'multer'
+import multer from 'multer'
 import { jwtauthentication } from '@makeitcmn/comon'
 // import publishCourse_controlers from '../../libs/controllers/course/publishCourse_controlers'
-// const storage = multer.memoryStorage();
-// const upload = multer({storage:storage});
+const storage = multer.memoryStorage();
+const upload = multer({storage:storage});
 
 
 
@@ -19,10 +19,19 @@ export default (dependencies:any)=>{
         
     }
     const router =  express.Router();
-    // Course contrpller
-    const {  cartController  } = CartControllers(dependencies);
-    // lesson controller
-    router.post("/cart",cartController);
+    // cart contrpller
+    const {  cartController,removeProductId,getItem } = CartControllers(dependencies);
+  
+
+    // post methodes
+    router.post("/cart",jwtauthentication(secret),cartController);
+
+
+    // patch methodes
+    router.patch("/cart/remove",jwtauthentication(secret),removeProductId);
+
+    // get methodes
+    router.get("/cart/get/:id",getItem)
  
 
     return router

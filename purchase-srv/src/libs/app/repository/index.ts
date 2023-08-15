@@ -1,2 +1,3 @@
 import cartRepository from "./cart.repository";
-export { cartRepository }
+import purchaseRespository from "./purhase.repository"
+export { cartRepository,purchaseRespository}

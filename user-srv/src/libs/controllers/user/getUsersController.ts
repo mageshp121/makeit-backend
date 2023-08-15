@@ -1,24 +1,17 @@
+import { BadRequestError } from "@makeitcmn/comon";
 import { Request, Response } from "express";
 
 export default (dependencies: any) => {
   const {
     useCase:{ getAllUser_useCase }} = dependencies;
   const getAllUsers = async (req: Request, res: Response) => {
-    const tokensdd = req.session
-    console.log(tokensdd,'gahdgsadhdsghjdggdhsadgsadsgjgjhsghsghsghdgshgdaghjasdgshdga');
-    if(req.cookies.refreshToken){
-      console.log(req.cookies.refreshToken);
-      console.log('refersh tokenn yes');
-    }else{
-      console.log('access tokenn no');
-    }
-   
     try {
       const useData = await getAllUser_useCase(dependencies).executefunction();
       if (!useData) res.json({ staus: false });
-      res.status(200).json(useData);
+
+         res.status(200).send(useData);
     } catch (error: any) {
-      res.json(error);
+      throw new BadRequestError("Something went wrong");
     }
   };
   return getAllUsers;
