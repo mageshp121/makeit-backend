@@ -1,0 +1,16 @@
+name: tests-purchase
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'purchase-srv/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd purchase-srv && npm install
