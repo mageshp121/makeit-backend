@@ -20,6 +20,8 @@ export default (dependencies:any)=>{
     const { getpurchseHistoryUser,getpurchaseHistoryTutor} = purchaseController(dependencies);
     const { getPurchasedcourse_controler } = purchaseCourseController(dependencies)
     // get methods
+
+    
     router.get("/user/purchase/get/:userid",getpurchseHistoryUser);
     router.get("/tutor/purchase/get/:tutorid",getpurchaseHistoryTutor);
     router.get("/user/purchase/get/course/:id",getPurchasedcourse_controler)
