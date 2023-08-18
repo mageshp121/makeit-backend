@@ -1,8 +1,3 @@
-
-
-
-
-
 export const editeCategory_usecase = async (dependencies: any) => {
   const {
     repository: { categoryRepository },
@@ -23,5 +18,5 @@ export const editeCategory_usecase = async (dependencies: any) => {
     }
   };
 
-  return {exicutefunction}
+  return { exicutefunction };
 };

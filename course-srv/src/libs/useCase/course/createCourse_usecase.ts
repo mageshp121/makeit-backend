@@ -7,9 +7,17 @@ import sharp from "sharp";
 import { CourseCreatedPublisher } from "../../../events/publishers/course-created-publisher";
 import { natsWrapper } from "../../../nats-wrapper";
 dotenv.config();
+
 /**
+ *
+ *
+ *
  * courseData is an interface.
  * Course is a class.
+ *
+ *
+ *
+ *
  */
 
 // const bucketName = process.env.BUCKET_NAME as
@@ -20,9 +28,6 @@ export const createCourse_useCase = async (dependencies: any) => {
   } = dependencies;
   if (!courseRepository) console.log("Have no repository");
   const exicutefunction = async (data: any) => {
-    console.log(randomImageBites(), "btyryyyryryryr");
-    console.log(data, "datatatatatatatataatatatatat");
-
     // Converting the image buffer from JPG to WebP
     const imageBufferJPG = data.file.buffer;
     const contentType = "image/webp";
@@ -36,18 +41,14 @@ export const createCourse_useCase = async (dependencies: any) => {
       Body: webImageData,
       ContentType: contentType,
     };
-    console.log(params, "dadadddddddddd");
-
     const command = new PutObjectCommand(params);
     await s3.send(command);
-
     // creating a new course enitty
     let cours: object = new course({
       ...data.body,
       drafted: true,
       thumbNailImageS3UrlKey: imageName,
     });
-    console.log(cours, "course entity created");
     const courseRes = await courseRepository.createCourse(cours);
     new CourseCreatedPublisher(natsWrapper.client).publish({
       CourseId: courseRes._id,

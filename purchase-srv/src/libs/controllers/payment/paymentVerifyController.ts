@@ -1,8 +1,8 @@
 import { Request,Response } from "express"
 
 export default (dependencies:any)=>{
+    const { useCase: {verifyPayment_usecase }} = dependencies;
     const payMentVerifyController = async(req:Request,res:Response)=>{
-        const { useCase: {verifyPayment_usecase }} = dependencies;
         const { exicutefunction } =  verifyPayment_usecase(dependencies);
         const authorizationHeader:any = req.headers.authorization
         const token = authorizationHeader.split(' ')[1];

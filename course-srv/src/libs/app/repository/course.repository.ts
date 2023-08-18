@@ -34,11 +34,10 @@ export default {
     const courses = await course.find({ tutorId: id });
     return courses;
   },
-  getCourseByCategory:async(category:string)=>{
-      console.log(category);
-      const courses = await course.find({Category:category});
-      return courses
-      
+  getCourseByCategory: async (category: string) => {
+    console.log(category);
+    const courses = await course.find({ Category: category });
+    return courses;
   },
 
   getAllCoureses: async () => {
@@ -58,14 +57,10 @@ export default {
       { drafted: false },
       { new: true }
     );
-    console.log(courseRes, "<= publishCourseCourseById => ");
     return courseRes;
   },
 
   updateCourse: async (data: any) => {
-    console.log(data,'data');
-    console.log('calling thssss');
-    
     const courssRes = await course.updateOne(
       { _id: new Types.ObjectId(data._id) },
       {
@@ -79,7 +74,7 @@ export default {
           WhatWilllearn3: data.WhatWilllearn3,
           WhatWilllearn4: data.WhatWilllearn4,
           WhoIsThiscourseFor: data.WhoIsThiscourseFor,
-          thumbNailImageS3UrlKey:data.imageName,
+          thumbNailImageS3UrlKey: data.imageName,
           prerequesties1: data.prerequesties1,
           prerequesties2: data.prerequesties2,
           CoursePrice: data.CoursePrice,
@@ -88,7 +83,6 @@ export default {
       },
       { new: true }
     );
-    console.log(courssRes);
-    return courssRes
+    return courssRes;
   },
 };

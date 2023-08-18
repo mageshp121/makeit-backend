@@ -9,5 +9,5 @@ export const getAllCatogory_useCase = async (dependencies: any) => {
     const categoryRes = await categoryRepository.getAllCategory();
     return categoryRes;
   };
-  return { exicutefunction}
+  return { exicutefunction };
 };

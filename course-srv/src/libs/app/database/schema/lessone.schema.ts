@@ -12,8 +12,5 @@ const lessoneSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-const lessone = mongoose.model("lesones",lessoneSchema)
-console.log(lessone,'mongoose course');
-export {
-    lessone
-}
+const lessone = mongoose.model("lesones", lessoneSchema);
+export { lessone };
