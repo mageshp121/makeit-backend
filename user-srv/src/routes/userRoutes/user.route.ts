@@ -8,9 +8,6 @@ dotenv.config()
 const storage = multer.memoryStorage();
 const upload = multer({storage:storage});
 
-
-
-
 const secret:any = {
         refreshToken : process.env.REFRESH_JWT_SECRETEKEY,
         accessToken : process.env.ACCESS_JWT_SECRETEKEY

@@ -6,7 +6,6 @@ export default (dependencies:any)=>{
           const { useCase: { checkout_Usecase},} = dependencies;
           const { exicutefunction } = await checkout_Usecase(dependencies);
           console.log(req.body,'bodyyyyy');
-          
          const checkOutRes =   await exicutefunction(req.body)
           console.log(checkOutRes,'resss');
           res.send(checkOutRes).status(200);

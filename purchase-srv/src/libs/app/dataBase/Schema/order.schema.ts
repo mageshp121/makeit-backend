@@ -29,7 +29,7 @@ const orderFortutorSchema = new mongoose.Schema({
     tutorId:String,
     orderId:String,
     courseId:String,
-    CoursePrice:String,
+    coursePrice:String,
     totalemount:Number,
     paymentGateway:String,
     date:Date,

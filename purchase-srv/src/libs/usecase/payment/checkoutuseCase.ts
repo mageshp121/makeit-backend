@@ -7,7 +7,7 @@ export const checkout_Usecase = async (dependencies: any) => {
   const exicutefunction = async (data: any) => {
     console.log(data, "<= data =>");
     const options = {
-      amount: data.totalemount,
+      amount: data.totalemount*100,
       currency: "INR",
     };
     console.log(options, "<= options =>");
@@ -29,6 +29,7 @@ export const checkout_Usecase = async (dependencies: any) => {
             delete neworderObject.courseDatails;
             orderobjetcs.push(neworderObject);
           }
+          console.log(orderobjetcs,'orderObjects');
           // calling transaction funcation
           const trasactoionStatus =
             await purchaseRespository.createOrdrHistoryTrasaction(

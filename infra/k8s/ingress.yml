@@ -39,3 +39,10 @@ spec:
                 name: purchase-srv
                 port:
                   number: 5000  
+          - path: /api/history/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: purchase-srv
+                port:
+                  number: 5000  

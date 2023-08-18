@@ -8,8 +8,7 @@ export interface lessoneData {
 }
 
 export class lessoneEntity {
-  
-  lessoneTitle: string;
+  lessoneTitle: string ;
   lessoneOrder: number;
   tutorId: string;
   courseId: string;
@@ -22,12 +21,10 @@ export class lessoneEntity {
     tutorId,
     courseId,
   }: lessoneData) {
-    this.lessoneS3UrlKey = lessoneS3UrlKey;
-    this.lessoneTitle = lessoneTitle;
-    this.lessoneOrder = lessoneOrder;
-    this.tutorId = tutorId;
-    this.courseId = courseId;
-
-    
+       (this.lessoneS3UrlKey = lessoneS3UrlKey),
+      (this.lessoneOrder = lessoneOrder),
+      (this.tutorId = tutorId),
+      (this.courseId = courseId),
+      (this.lessoneTitle=lessoneTitle)
   }
 }
