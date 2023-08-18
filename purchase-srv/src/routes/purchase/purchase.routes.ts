@@ -22,6 +22,9 @@ export default (dependencies:any)=>{
 
 
 
+
+
+    
     // get methods
     router.get("/user/purchase/get/:userid",getpurchseHistoryUser);
     router.get("/tutor/purchase/get/:tutorid",getpurchaseHistoryTutor);
