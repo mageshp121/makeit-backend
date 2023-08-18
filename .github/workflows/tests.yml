@@ -1,13 +1,16 @@
-name: tests
+name: test
 
 on:
-  pull_request
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'course-srv/**'
 
-jobs: 
+jobs:
   build:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd course-srv && npm install 
-    
-
+      - run: cd course-srv && npm install
