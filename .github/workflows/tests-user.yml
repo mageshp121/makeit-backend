@@ -1,0 +1,16 @@
+name: tests-user
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'user-srv/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd user-srv && npm install
