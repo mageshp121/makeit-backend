@@ -28,7 +28,6 @@ export default (dependencies: any) => {
     upDatecourseBasic,
   } = courseController(dependencies);
 
-  
   // lesson controller
   const { createLessone_controller, getLessoneBycourseId_controller } =
     lessoneControler(dependencies);
